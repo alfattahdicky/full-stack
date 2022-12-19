@@ -1,0 +1,39 @@
+@import "~bootstrap/dist/css/bootstrap-utilities.min.css";
+/* @import "~bootstrap/dist/css/bootstrap-utilities.rtl.min.css"; */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+/* @import "~bootstrap/dist/css/bootstrap.rtl.min.css"; */
+@import "~bootstrap/dist/css/bootstrap-grid.min.css";
+/* @import "~bootstrap/dist/css/bootstrap-grid.rtl.min.css"; */
+
+.section-group {
+  background-color: rgba(253, 159, 59, 0.575);
+  border: 3px solid rgb(253, 159, 59);
+}
+
+.btn-section {
+  width: 120px;
+  max-width: 100%;
+}
+
+.btn-action {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  transform: scale(1);
+  transition: transform .3s ease-in-out;
+}
+
+.btn-action:hover {
+  transform: scale(0.95);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

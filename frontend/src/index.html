@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Application Data Karyawan</title>
+  </head>
+  <body>
+    <div id="app" class="container-xxl pt-4">
+      <header>
+        <section class="d-flex align-items-center">
+          <img src="./assets/personal-data.png" class="" height="50px" alt="Data Person Image">
+          <h1 class="ms-4 fs-2">Aplikasi Pribadi</h1>
+        </section>
+      </header>
+      <main class="mt-4">
+        <article class="position-relative">
+          <!-- Section Search & Add -->
+          <section class="position-relative p-4 section-group" >
+            <div class="">
+              <label for="number" class="fw-semibold">NIK</label>
+              <input type="number" class="w-25 form-control" name="number" id="inputNumber">
+            </div>
+            <div class="">
+              <label for="name" class="fw-semibold d-block mt-3">Nama</label>
+              <input type="text" name="name" class="w-25 form-control" id="inputName">
+            </div>
+            <div class="position-absolute bottom-5 end-0 d-flex gap-3 flex-row-reverse">
+              <button class="btn btn-primary px-4 py-3 btn-section" data-bs-toggle="modal" data-bs-target="#modalView">Add</button>
+              <button class="btn btn-primary px-4 py-3 btn-section">Search</button>
+            </div>
+          </section>
+        </article>
+
+        <!-- Modal -->
+        <div class="modal fade" id="modalView" aria-labelledby="Modal Add" tabindex="-1">
+          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+              <div class="modal-header ">
+                <section class="d-flex align-items-center">
+                  <img src="./assets/personal-data.png" class="object-cover" height="30px" alt="Data Person Image">
+                  <h1 class="ms-2 fs-2">Aplikasi Pribadi</h1>
+                </section>
+              </div>
+              <div class="modal-body mx-3">
+                <h3 class="fs-4">Tambah Data Baru</h3>
+                <form action="">
+                  <div class="nik mb-3">
+                    <label for="number" class="fw-semibold">NIK</label>
+                    <input type="number" class="form-control" name="number" class="form-control" id="inputNumber" required>
+                  </div>
+                  <div class="name mb-3">
+                    <label for="name" class="fw-semibold d-block">Nama</label>
+                    <input type="text" name="name" class="form-control" id="inputName" required>
+                  </div>
+                  <div class="kelamin mb-3">
+                    <label for="" class="d-block fw-semibold">Jenis kelamin</label>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="flexRadioDefault" id="laki" value="Laki-Laki" >
+                      <label class="form-check-label" for="laki">
+                        Laki-Laki
+                      </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="flexRadioDefault" id="perempuan" value="Perempuan">
+                      <label class="form-check-label" for="perempuan">
+                        Perempuan
+                      </label>
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <label for="lahir" class="d-block fw-semibold">Tanggal Lahir</label>
+                    <input type="date" name="lahir" class="form-control" id="bornId" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="alamat" class="d-block fw-semibold">Alamat</label>
+                    <Textarea name="alamat" id="alamat" class="form-control" required></Textarea>
+                  </div>
+                  <div class="mb-3">
+                    <label for="negara" class="fw-semibold">Negara</label>
+                    <select class="form-select" name="negara" required>
+                      <option selected>Open this select menu</option>
+                      <option value="Argentina">Argentina</option>
+                      <option value="Indonesia">Indonesia</option>
+                      <option value="Portugal">Portugal</option>
+                      <option value="Rusia">Rusia</option>
+                      <option value="Malaysia">Malaysia</option>
+                    </select>
+                  </div>
+                  <div class="modal-footer justify-content-start p-0 py-2">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button data-bs-dismiss="modal" class="btn btn-outline-secondary btn-back">Kembali</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        
+        <!-- Table -->
+        <article class="mt-5">
+          <table class="table">
+            <thead>
+              <tr class="table-primary">
+                <th>No</th>
+                <th>NIK</th>
+                <th>Nama Lengkap</th>
+                <th>Umur</th>
+                <th>Tanggal Lahir</th>
+                <th>Jenis Kelamin</th>
+                <th>Alamat</th>
+                <th>Negara</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody class="table-body">
+              <tr>
+                <th>1</th>
+                <td>3175050111011001</td>
+                <td>Dicy AL Fattta</td>
+                <td>21</td>
+                <td>Jakarta</td>
+                <td>Laki-laki</td>
+                <td>Lebak Para</td>
+                <td>Indonesia</td>
+                <td>
+                  <button class="fw-semibold text-warning btn-action">Detail</button>
+                  <button class="fw-semibold text-primary btn-action">Edit</button>
+                  <button class="fw-semibold text-danger btn-action">Hapus</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+
+      </main>
+      <script type="module" src="./js/main.js"></script>
+    </div>
+  </body>
+</html>
