@@ -2,10 +2,11 @@ package com.domain.models.entities;
 
 import java.io.Serializable;
 
-import org.springframework.lang.NonNull;
-
 import jakarta.annotation.Nonnull;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -14,27 +15,35 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "persons")
 public class Person implements Serializable {
-
   @GeneratedValue(strategy=GenerationType.UUID)
-  private Long id;
+  @Column(nullable = true)
+  private Integer id;
 
   @Id
+  @Nonnull
+  @Column(unique = true)
   private Long nik;
 
+  @Column(length = 20)
   private String fullName;
 
+  @Enumerated(EnumType.STRING)
+  @Column(length = 10)
   private GenderType gender;
 
+  @Column(length = 100)
   private String address;
 
+  @Column(nullable = false)
   private String dateOfBirth;
 
+  @Enumerated(EnumType.STRING)
+  @Column(length = 10)
   private CountryType country;
 
-  public Person() {
-  }
+  public Person() {}
 
-  public Person(Long id, Long nik, String fullName, GenderType gender, String address, String dateOfBirth,
+  public Person(Integer id, Long nik, String fullName, GenderType gender, String address, String dateOfBirth,
       CountryType country) {
     this.id = id;
     this.nik = nik;
@@ -45,11 +54,11 @@ public class Person implements Serializable {
     this.country = country;
   }
 
-  public Long getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(Long id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 
