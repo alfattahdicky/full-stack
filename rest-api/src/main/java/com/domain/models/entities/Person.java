@@ -8,6 +8,8 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "persons")
@@ -16,6 +18,7 @@ public class Person implements Serializable {
   @Column(unique = true)
   private Long nik;
 
+  @NotEmpty(message = "Name is required")
   @Column(length = 20)
   private String fullName;
 
@@ -23,9 +26,11 @@ public class Person implements Serializable {
   @Column(length = 10)
   private GenderType gender;
 
+  @NotEmpty(message = "address must be required")
   @Column(length = 100)
   private String address;
 
+  @NotEmpty(message = "dateOfBirth must be required")
   @Column(nullable = false)
   private String dateOfBirth;
 
