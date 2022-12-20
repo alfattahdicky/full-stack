@@ -23,25 +23,38 @@ public class PersonService {
     return personRepo.save(person);
   }
 
-  public Person findOne(Integer id) {
-    Optional<Person> temp = personRepo.findById(id);
+  public Person updatePerson(Person person) {
+    Person updatePerson = personRepo.findById(person.getNik()).orElse(null);
+    updatePerson.setNik(person.getNik());
+    updatePerson.setAddress(person.getAddress());
+    updatePerson.setFullName(person.getFullName());
+    updatePerson.setCountry(person.getCountry());
+    updatePerson.setDateOfBirth(person.getDateOfBirth());
+    updatePerson.setGender(person.getGender());
+
+    return personRepo.save(updatePerson);
+  }
+
+  public Person findOne(Long nik) {
+    Optional<Person> temp = personRepo.findById(nik);
 
     if(!temp.isPresent()) {
       return null;
     }
-    return personRepo.findById(id).get();
+    System.out.println(personRepo.findById(nik));
+    return personRepo.findById(nik).get();
   }
 
   public Iterable<Person> findAll() {
     return personRepo.findAll();
   }
 
-  public void removeOne(Integer id) {
-    personRepo.deleteById(id);
+  public void removeOne(Long nik) {
+    personRepo.deleteById(nik);
   }
 
-  public List<Person> findByNameAndNik(String fullName, long nik) {
-    return personRepo.findByFullNameAndNik(fullName, nik);
+  public Person findByName(String fullName) {
+    return personRepo.findByFullName(fullName);
   }
 
 }

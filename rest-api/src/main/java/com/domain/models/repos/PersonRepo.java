@@ -1,12 +1,17 @@
 package com.domain.models.repos;
 
-import java.util.List;
-
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 import com.domain.models.entities.Person;
 
-public interface PersonRepo extends CrudRepository<Person, Integer> {
-  
-  List<Person> findByFullNameAndNik(String fullNameString, Long nik);
+import jakarta.websocket.server.PathParam;
+
+public interface PersonRepo extends CrudRepository<Person, Long> {
+
+  Person findByFullName(String fullName);
+
+  // Person findByFullNameAndNik(String fullName, Long id);
+
 }
