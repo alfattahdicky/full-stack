@@ -1,6 +1,6 @@
-const modalElement = (nik, name, date, gender, address, country) => {
+const modalElement = (nameView, nik, name, date, gender, address, country) => {
   return `
-  <div class="modal fade show" role="dialog" style="display: block;" aria-modal="true" sid="modalView" aria-labelledby="Modal Add" tabindex="-1">
+  <div class="modal" id="${nameView}View" aria-labelledby="Read" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header ">
@@ -10,30 +10,30 @@ const modalElement = (nik, name, date, gender, address, country) => {
           </section>
         </div>
         <div class="modal-body mx-3">
-          <h3 class="fs-4">Tambah Data Baru</h3>
-          <form action="">
+          <h3 class="fs-4">${nameView} Data</h3>
+          <form action="" id="actionForm">
             <div class="nik mb-3">
               <label for="number" class="fw-semibold">NIK</label>
-              <input type="number" class="form-control" name="number" class="form-control" id="inputNumber" value=${nik} required>
+              <input type="text" class="form-control" maxlength="16" name="nik" class="form-control" id="inputNumber" value=${nik} required readonly>
             </div>
             <div class="name mb-3">
               <label for="name" class="fw-semibold d-block">Nama</label>
-              <input type="text" name="name" class="form-control" id="inputName" value=${name} required>
+              <input type="text" name="fullName" class="form-control" id="inputName" value=${name} required ${nameView === "read" ? "readonly": ""}>
             </div>
             <div class="kelamin mb-3">
               <label for="" class="d-block fw-semibold">Jenis kelamin</label>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="laki" value="LAKI" checked=${
-                  "Laki-Laki" === gender
-                }>
+                <input class="form-check-input" type="radio" name="gender" id="laki" value="LAKI" ${
+                  "LAKI" === gender ? "checked" : ""
+                }  ${"perempuan" === gender ? "disabled" : ""}>
                 <label class="form-check-label" for="laki">
                   Laki-Laki
                 </label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="perempuan" value="PEREMPUAN" checked=${
-                  "perempuan" === gender
-                }>
+                <input class="form-check-input" type="radio" name="gender" id="perempuan" value="PEREMPUAN" ${
+                  "PEREMPUAN" === gender ? "checked" : ""
+                } ${"Laki-Laki" === gender ? "disabled" : ""}>
                 <label class="form-check-label" for="perempuan">
                   Perempuan
                 </label>
@@ -41,36 +41,39 @@ const modalElement = (nik, name, date, gender, address, country) => {
             </div>
             <div class="mb-3">
               <label for="lahir" class="d-block fw-semibold">Tanggal Lahir</label>
-              <input type="date" name="lahir" class="form-control" id="bornId" value=${date} required>
+              <input type="date" name="dateOfBirth" class="form-control" id="bornId" value=${date} required ${nameView === "read" ? "readonly" : ""}>
             </div>
             <div class="mb-3">
               <label for="alamat" class="d-block fw-semibold">Alamat</label>
-              <textarea name="alamat" id="alamat" class="form-control" required>${address}</textarea>
+              <textarea name="address" id="alamat" class="form-control" required ${
+                nameView === "read" ? "readonly" : ""
+              }>${address}</textarea>
             </div>
             <div class="mb-3">
               <label for="negara" class="fw-semibold">Negara</label>
-              <select class="form-select" name="negara" value="Indonesia" required>
+              <select class="form-select" name="country" value="Indonesia" required ${
+                nameView === "read" ? "disabled" : ""
+              }>
                 <option>Open this select menu</option>
-                <option value="Argentina" selected=${
-                  "Argentina" === country
+                <option value="ARGENTINA" selected=${
+                  "ARGENTINA" === country
                 }>Argentina</option>
-                <option value="Indonesia" selected=${
-                  "Indonesia" === country
+                <option value="INDONESIA" selected=${
+                  "INDONESIA" === country
                 }>Indonesia</option>
-                <option value="Portugal" selected=${
-                  "Portugal" === country
+                <option value="PORTUGAL" selected=${
+                  "PORTUGAL" === country
                 }>Portugal</option>
-                <option value="Rusia" selected=${
-                  "Rusia" === country
+                <option value="RUSIA" selected=${
+                  "RUSIA" === country
                 }>Rusia</option>
-                <option value="Malaysia" selected=${
-                  "Malaysia" === country
-                } >Malaysia</option>
               </select>
             </div>
             <div class="modal-footer justify-content-start p-0 py-2">
-              <button type="submit" class="btn btn-primary">Submit</button>
-              <button data-bs-dismiss="modal" class="btn btn-outline-secondary btn-back">Kembali</button>
+              <button type="submit" class="btn btn-primary"${
+                nameView === "read" ? "disabled" : ""
+              } id="editBtn" >Submit</button>
+              <button data-bs-dismiss="modal" class="btn btn-outline-secondary btn-"back">Kembali</button>
             </div>
           </form>
         </div>

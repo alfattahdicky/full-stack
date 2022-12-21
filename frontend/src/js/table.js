@@ -6,9 +6,8 @@ const tableData = (
   gender,
   address,
   country,
-  handleDelete
 ) => {
-  return `<tr id="column">
+  return `<tr id="column" data-id=${nik}>
     <th>${index}</th>
     <td>${nik}</td>
     <td>${name}</td>

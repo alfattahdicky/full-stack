@@ -28,14 +28,15 @@
                 type="number"
                 class="w-25 form-control"
                 name="number"
+                max="16"
                 id="searchNik"
               />
             </div>
             <div class="">
-              <label for="name" class="fw-semibold d-block mt-3">Nama</label>
+              <label for="fullName" class="fw-semibold d-block mt-3">Nama</label>
               <input
                 type="text"
-                name="name"
+                name="fullName"
                 class="w-25 form-control"
                 id="searchName"
               />
@@ -81,16 +82,17 @@
                   </section>
                 </div>
                 <div class="modal-body mx-3">
-                  <h3 class="fs-4">Tambah Data Baru</h3>
-                  <form action="" id="addForm">
+                  <h3 class="fs-4" id="titleModal">Tambah Data Baru</h3>
+                  <form id="addForm" >
                     <div class="nik mb-3">
                       <label for="number" class="fw-semibold">NIK</label>
                       <input
-                        type="number"
+                        type="text"
                         class="form-control"
-                        name="number"
+                        name="nik"
                         class="form-control"
                         id="inputNumber"
+                        maxlength="16"
                         required
                       />
                     </div>
@@ -98,7 +100,7 @@
                       <label for="name" class="fw-semibold d-block">Nama</label>
                       <input
                         type="text"
-                        name="name"
+                        name="fullName"
                         class="form-control"
                         id="inputName"
                         required
@@ -112,7 +114,7 @@
                         <input
                           class="form-check-input"
                           type="radio"
-                          name="flexRadioDefault"
+                          name="gender"
                           id="laki"
                           value="LAKI"
                         />
@@ -124,7 +126,7 @@
                         <input
                           class="form-check-input"
                           type="radio"
-                          name="flexRadioDefault"
+                          name="gender"
                           id="perempuan"
                           value="PEREMPUAN"
                         />
@@ -139,7 +141,7 @@
                       >
                       <input
                         type="date"
-                        name="lahir"
+                        name="dateOfBirth"
                         class="form-control"
                         id="bornId"
                         required
@@ -150,7 +152,7 @@
                         >Alamat</label
                       >
                       <textarea
-                        name="alamat"
+                        name="address"
                         id="alamat"
                         class="form-control"
                         required
@@ -164,7 +166,6 @@
                         <option value="INDONESIA">Indonesia</option>
                         <option value="PORTUGAL">Portugal</option>
                         <option value="RUSIA">Rusia</option>
-                        <option value="MALAYSIA">Malaysia</option>
                       </select>
                     </div>
                     <div class="modal-footer justify-content-start p-0 py-2">
@@ -174,6 +175,7 @@
                       <button
                         data-bs-dismiss="modal"
                         class="btn btn-outline-secondary btn-back"
+                        id="btnBack"
                       >
                         Kembali
                       </button>
