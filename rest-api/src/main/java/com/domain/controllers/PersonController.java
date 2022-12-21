@@ -3,11 +3,12 @@ package com.domain.controllers;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.integration.IntegrationProperties.Error;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,12 +23,14 @@ import com.domain.dto.SearchData;
 import com.domain.models.entities.Person;
 import com.domain.services.PersonService;
 
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/person")
+@CrossOrigin
 public class PersonController {
-  
+
   @Autowired
   private PersonService personService;
 
@@ -35,6 +38,8 @@ public class PersonController {
   public ResponseEntity<Response<Person>> create(@Valid @RequestBody Person person, Errors errors) {
 
     Response<Person> responseData = new Response<>();
+    HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.set("Content-type", "application/json");
 
     if(errors.hasErrors()) {
       for(ObjectError error : errors.getAllErrors()) {
@@ -46,7 +51,7 @@ public class PersonController {
     }
     responseData.setStatus(HttpStatus.OK.value());
     responseData.setPayload(personService.save(person));
-    return ResponseEntity.ok(responseData);
+    return ResponseEntity.ok().headers(responseHeaders).body(responseData);
   } 
 
   @GetMapping
