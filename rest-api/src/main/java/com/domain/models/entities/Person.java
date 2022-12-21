@@ -3,6 +3,7 @@ package com.domain.models.entities;
 import java.io.Serializable;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;

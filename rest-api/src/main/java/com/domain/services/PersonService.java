@@ -1,7 +1,5 @@
 package com.domain.services;
 
-
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +18,12 @@ public class PersonService {
   private PersonRepo personRepo;
 
   public Person save(Person person) {
+    System.out.println(personRepo.findById(person.getNik()).isPresent());
     return personRepo.save(person);
+  }
+
+  public boolean checkingDataPerson(Long nik) {
+    return personRepo.findById(nik).isPresent();
   }
 
   public Person updatePerson(Person person) {
@@ -41,7 +44,7 @@ public class PersonService {
     if(!temp.isPresent()) {
       return null;
     }
-    System.out.println(personRepo.findById(nik));
+    // System.out.println(personRepo.findById(nik).isPresent());
     return personRepo.findById(nik).get();
   }
 
