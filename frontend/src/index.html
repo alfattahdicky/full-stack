@@ -28,7 +28,7 @@
                 type="number"
                 class="w-25 form-control"
                 name="number"
-                id="inputNumber"
+                id="searchNik"
               />
             </div>
             <div class="">
@@ -37,7 +37,7 @@
                 type="text"
                 name="name"
                 class="w-25 form-control"
-                id="inputName"
+                id="searchName"
               />
             </div>
             <div
@@ -82,7 +82,7 @@
                 </div>
                 <div class="modal-body mx-3">
                   <h3 class="fs-4">Tambah Data Baru</h3>
-                  <form action="">
+                  <form action="" id="addForm">
                     <div class="nik mb-3">
                       <label for="number" class="fw-semibold">NIK</label>
                       <input
@@ -114,7 +114,7 @@
                           type="radio"
                           name="flexRadioDefault"
                           id="laki"
-                          value="Laki-Laki"
+                          value="LAKI"
                         />
                         <label class="form-check-label" for="laki">
                           Laki-Laki
@@ -126,7 +126,7 @@
                           type="radio"
                           name="flexRadioDefault"
                           id="perempuan"
-                          value="Perempuan"
+                          value="PEREMPUAN"
                         />
                         <label class="form-check-label" for="perempuan">
                           Perempuan
@@ -158,17 +158,17 @@
                     </div>
                     <div class="mb-3">
                       <label for="negara" class="fw-semibold">Negara</label>
-                      <select class="form-select" name="negara" required>
+                      <select class="form-select" name="country" id="selectCountry" required>
                         <option selected>Open this select menu</option>
-                        <option value="Argentina">Argentina</option>
-                        <option value="Indonesia">Indonesia</option>
-                        <option value="Portugal">Portugal</option>
-                        <option value="Rusia">Rusia</option>
-                        <option value="Malaysia">Malaysia</option>
+                        <option value="ARGENTINA">Argentina</option>
+                        <option value="INDONESIA">Indonesia</option>
+                        <option value="PORTUGAL">Portugal</option>
+                        <option value="RUSIA">Rusia</option>
+                        <option value="MALAYSIA">Malaysia</option>
                       </select>
                     </div>
                     <div class="modal-footer justify-content-start p-0 py-2">
-                      <button type="submit" class="btn btn-primary">
+                      <button type="submit" class="btn btn-primary" id="submitForm">
                         Submit
                       </button>
                       <button
@@ -182,7 +182,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> 
 
         <!-- Table -->
         <article class="mt-5">
@@ -192,7 +192,6 @@
                 <th>No</th>
                 <th>NIK</th>
                 <th>Nama Lengkap</th>
-                <th>Umur</th>
                 <th>Tanggal Lahir</th>
                 <th>Jenis Kelamin</th>
                 <th>Alamat</th>
@@ -200,37 +199,8 @@
                 <th>Action</th>
               </tr>
             </thead>
-            <tbody class="table-body">
-              <tr>
-                <th>1</th>
-                <td>3175050111011001</td>
-                <td>Dicy AL Fattta</td>
-                <td>21</td>
-                <td>Jakarta</td>
-                <td>Laki-laki</td>
-                <td>Lebak Para</td>
-                <td>Indonesia</td>
-                <td>
-                  <button
-                    class="fw-semibold text-warning btn-action"
-                    id="btnDetail"
-                  >
-                    Detail
-                  </button>
-                  <button
-                    class="fw-semibold text-primary btn-action"
-                    id="btnEdit"
-                  >
-                    Edit
-                  </button>
-                  <button
-                    class="fw-semibold text-danger btn-action"
-                    id="btnDelete"
-                  >
-                    Hapus
-                  </button>
-                </td>
-              </tr>
+            <tbody class="table-body" id="tableBody">
+              
             </tbody>
           </table>
         </article>

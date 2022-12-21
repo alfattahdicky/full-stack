@@ -23,7 +23,7 @@ const modalElement = (nik, name, date, gender, address, country) => {
             <div class="kelamin mb-3">
               <label for="" class="d-block fw-semibold">Jenis kelamin</label>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="laki" value="Laki-Laki" checked=${
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="laki" value="LAKI" checked=${
                   "Laki-Laki" === gender
                 }>
                 <label class="form-check-label" for="laki">
@@ -31,7 +31,7 @@ const modalElement = (nik, name, date, gender, address, country) => {
                 </label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="perempuan" value="Perempuan" checked=${
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="perempuan" value="PEREMPUAN" checked=${
                   "perempuan" === gender
                 }>
                 <label class="form-check-label" for="perempuan">
@@ -45,17 +45,27 @@ const modalElement = (nik, name, date, gender, address, country) => {
             </div>
             <div class="mb-3">
               <label for="alamat" class="d-block fw-semibold">Alamat</label>
-              <Textarea name="alamat" id="alamat" class="form-control" value=${address} required></Textarea>
+              <textarea name="alamat" id="alamat" class="form-control" required>${address}</textarea>
             </div>
             <div class="mb-3">
               <label for="negara" class="fw-semibold">Negara</label>
-              <select class="form-select" name="negara" value=${"Indonesia"} required>
-                <option selected>Open this select menu</option>
-                <option value="Argentina">Argentina</option>
-                <option value="Indonesia">Indonesia</option>
-                <option value="Portugal">Portugal</option>
-                <option value="Rusia">Rusia</option>
-                <option value="Malaysia">Malaysia</option>
+              <select class="form-select" name="negara" value="Indonesia" required>
+                <option>Open this select menu</option>
+                <option value="Argentina" selected=${
+                  "Argentina" === country
+                }>Argentina</option>
+                <option value="Indonesia" selected=${
+                  "Indonesia" === country
+                }>Indonesia</option>
+                <option value="Portugal" selected=${
+                  "Portugal" === country
+                }>Portugal</option>
+                <option value="Rusia" selected=${
+                  "Rusia" === country
+                }>Rusia</option>
+                <option value="Malaysia" selected=${
+                  "Malaysia" === country
+                } >Malaysia</option>
               </select>
             </div>
             <div class="modal-footer justify-content-start p-0 py-2">
