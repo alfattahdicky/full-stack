@@ -1,4 +1,4 @@
-const modalElement = (nameView, nik, name, date, gender, address, country) => {
+const modalForm = (nameView, nik, fullName, date, gender, address, country) => {
   return `
   <div class="modal" id="${nameView}View" aria-labelledby="Read" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -11,14 +11,17 @@ const modalElement = (nameView, nik, name, date, gender, address, country) => {
         </div>
         <div class="modal-body mx-3">
           <h3 class="fs-4">${nameView} Data</h3>
-          <form action="" id="actionForm">
+          <form id="actionForm">
             <div class="nik mb-3">
               <label for="number" class="fw-semibold">NIK</label>
               <input type="text" class="form-control" maxlength="16" name="nik" class="form-control" id="inputNumber" value=${nik} required readonly>
             </div>
             <div class="name mb-3">
               <label for="name" class="fw-semibold d-block">Nama</label>
-              <input type="text" name="fullName" class="form-control" id="inputName" value=${name} required ${nameView === "read" ? "readonly": ""}>
+              <input type="text" name="fullName" class="form-control" id="inputName" 
+              value=${fullName} required ${
+    nameView === "read" ? "readonly" : ""
+  }>
             </div>
             <div class="kelamin mb-3">
               <label for="" class="d-block fw-semibold">Jenis kelamin</label>
@@ -41,7 +44,9 @@ const modalElement = (nameView, nik, name, date, gender, address, country) => {
             </div>
             <div class="mb-3">
               <label for="lahir" class="d-block fw-semibold">Tanggal Lahir</label>
-              <input type="date" name="dateOfBirth" class="form-control" id="bornId" value=${date} required ${nameView === "read" ? "readonly" : ""}>
+              <input type="date" name="dateOfBirth" class="form-control" id="bornId" value=${date} required ${
+    nameView === "read" ? "readonly" : ""
+  }>
             </div>
             <div class="mb-3">
               <label for="alamat" class="d-block fw-semibold">Alamat</label>
@@ -73,7 +78,7 @@ const modalElement = (nameView, nik, name, date, gender, address, country) => {
               <button type="submit" class="btn btn-primary"${
                 nameView === "read" ? "disabled" : ""
               } id="editBtn" >Submit</button>
-              <button data-bs-dismiss="modal" class="btn btn-outline-secondary btn-"back">Kembali</button>
+              <button data-bs-dismiss="modal" class="btn btn-outline-secondary btn-back" id="btnBack">Kembali</button>
             </div>
           </form>
         </div>
@@ -83,4 +88,4 @@ const modalElement = (nameView, nik, name, date, gender, address, country) => {
   `;
 };
 
-export default modalElement;
+export default modalForm;
