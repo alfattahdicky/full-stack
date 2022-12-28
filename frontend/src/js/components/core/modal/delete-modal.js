@@ -1,4 +1,4 @@
-export const modalDelete = (name) => {
+const modalDelete = (name) => {
   return `
   <div class="modal fade" id="modalDelete" aria-hidden="true" aria-labelledby="modalDelete" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
@@ -7,7 +7,7 @@ export const modalDelete = (name) => {
           Anda yakin menghapus data ${name}?
         </div>
         <div class="modal-footer border-0">
-          <button class="btn btn-primary" id="btnOk">Ok</button>
+          <button class="btn btn-primary" data-bs-dismiss="modal" id="btnOk">Ok</button>
           <button class="btn btn-secondary" data-bs-dismiss="modal" id="btnBack">Batal</button>
         </div>
       </div>
@@ -15,3 +15,5 @@ export const modalDelete = (name) => {
   </div>
   `;
 };
+
+export default modalDelete;
