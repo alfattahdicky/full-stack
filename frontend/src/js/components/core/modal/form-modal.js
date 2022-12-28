@@ -10,17 +10,16 @@ const modalForm = (nameView, nik, fullName, date, gender, address, country) => {
           </section>
         </div>
         <div class="modal-body mx-3">
-          <h3 class="fs-4">${nameView} Data</h3>
           <form id="actionForm">
             <div class="nik mb-3">
               <label for="number" class="fw-semibold">NIK</label>
-              <input type="text" class="form-control" maxlength="16" name="nik" class="form-control" id="inputNumber" value=${nik} required readonly>
+              <input type="text" class="form-control" maxlength="16" name="nik" class="form-control" id="inputNumber" value=${nik} required readonly disabled>
             </div>
             <div class="name mb-3">
               <label for="name" class="fw-semibold d-block">Nama</label>
               <input type="text" name="fullName" class="form-control" id="inputName" 
               value=${fullName} required ${
-    nameView === "read" ? "readonly" : ""
+    nameView === "read" ? "readonly disabled" : ""
   }>
             </div>
             <div class="kelamin mb-3">
@@ -28,7 +27,9 @@ const modalForm = (nameView, nik, fullName, date, gender, address, country) => {
               <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="gender" id="laki" value="LAKI" ${
                   "LAKI" === gender ? "checked" : ""
-                }  ${"perempuan" === gender ? "disabled" : ""}>
+                }  ${"perempuan" === gender ? "disabled" : ""} ${
+    nameView === "read" ? "readonly disabled" : ""
+  }>
                 <label class="form-check-label" for="laki">
                   Laki-Laki
                 </label>
@@ -36,7 +37,9 @@ const modalForm = (nameView, nik, fullName, date, gender, address, country) => {
               <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="gender" id="perempuan" value="PEREMPUAN" ${
                   "PEREMPUAN" === gender ? "checked" : ""
-                } ${"Laki-Laki" === gender ? "disabled" : ""}>
+                } ${"Laki-Laki" === gender ? "disabled" : ""}  ${
+    nameView === "read" ? "readonly disabled" : ""
+  }>
                 <label class="form-check-label" for="perempuan">
                   Perempuan
                 </label>
@@ -45,19 +48,19 @@ const modalForm = (nameView, nik, fullName, date, gender, address, country) => {
             <div class="mb-3">
               <label for="lahir" class="d-block fw-semibold">Tanggal Lahir</label>
               <input type="date" name="dateOfBirth" class="form-control" id="bornId" value=${date} required ${
-    nameView === "read" ? "readonly" : ""
+    nameView === "read" ? "readonly disabled" : ""
   }>
             </div>
             <div class="mb-3">
               <label for="alamat" class="d-block fw-semibold">Alamat</label>
               <textarea name="address" id="alamat" class="form-control" required ${
-                nameView === "read" ? "readonly" : ""
+                nameView === "read" ? "readonly disabled" : ""
               }>${address}</textarea>
             </div>
             <div class="mb-3">
               <label for="negara" class="fw-semibold">Negara</label>
               <select class="form-select" name="country" value="Indonesia" required ${
-                nameView === "read" ? "disabled" : ""
+                nameView === "read" ? "disabled readonly" : ""
               }>
                 <option>Open this select menu</option>
                 <option value="ARGENTINA" selected=${
@@ -74,12 +77,15 @@ const modalForm = (nameView, nik, fullName, date, gender, address, country) => {
                 }>Rusia</option>
               </select>
             </div>
-            <div class="modal-footer justify-content-start p-0 py-2">
-              <button type="submit" class="btn btn-primary"${
-                nameView === "read" ? "disabled" : ""
-              } id="editBtn" >Submit</button>
-              <button data-bs-dismiss="modal" class="btn btn-outline-secondary btn-back" id="btnBack">Kembali</button>
-            </div>
+            ${
+              nameView !== "read"
+                ? `<div class="modal-footer justify-content-start p-0 py-2">
+                <button type="submit" class="btn btn-primary" id="editBtn" >Submit</button>
+                <button data-bs-dismiss="modal" class="btn btn-outline-secondary btn-back" id="btnBack">Kembali</button>
+              </div>`
+                : ""
+            }
+            
           </form>
         </div>
       </div>
