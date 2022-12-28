@@ -1,5 +1,6 @@
 import deleteItem from "./delete-feature.js";
 import detail from "./detail-feature.js";
+import edit from "./edit-feature.js";
 
 const tableBodyEl = document.getElementById("tableBody");
 const modalId = document.getElementById("modalId");
@@ -10,12 +11,8 @@ const handleClickItem = async (e) => {
   const btnDelete = e.target.id === "btnDelete";
 
   const id = e.target.parentElement.parentElement.dataset.id;
-
   if (btnDetail) detail(modalId, id);
-
-  if (btnEdit) {
-  }
-
+  if (btnEdit) edit(modalId, id);
   if (btnDelete) deleteItem(modalId, e, id);
 };
 

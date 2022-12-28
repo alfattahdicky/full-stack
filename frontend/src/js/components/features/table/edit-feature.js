@@ -1,37 +1,46 @@
-const dataById = await getDataById(id);
-const payload = await dataById.payload;
+import modalForm from "../../core/modal/form-modal";
+import { getDataById } from "../../../fetchers/fetch-data";
+import { Modal } from "bootstrap";
+import { putData } from "../../../fetchers/fetch-data";
+import Toastify from "toastify-js";
 
-modalId.innerHTML = modalElement(
-  "edit",
-  payload.nik,
-  payload.fullName,
-  payload.dateOfBirth,
-  payload.gender,
-  payload.address,
-  payload.country
-);
-const modalShow = new bootstrap.Modal("#editView");
-document.getElementById("bornId").value = payload.dateOfBirth;
+const edit = async (modalId, id) => {
+  const dataById = await getDataById(id);
+  const payload = await dataById.payload;
 
-document
-  .getElementById("btnBack")
-  .addEventListener("click", () => window.location.reload());
-modalShow.show();
+  modalId.innerHTML = modalForm(
+    "edit",
+    payload.nik,
+    payload.fullName,
+    payload.dateOfBirth,
+    payload.gender,
+    payload.address,
+    payload.country
+  );
+  const modalShow = new Modal("#editView");
+  const dateOfBirth = document.getElementById("bornId");
+  const btnBack = document.getElementById("btnBack");
 
-const editForm = document.getElementById("actionForm");
-const editBtn = document.getElementById("editBtn");
-editBtn.addEventListener("click", (e) => {
-  e.preventDefault();
-  const formEdit = new FormData(editForm);
-  let arr = [];
-  for (const obj of formEdit) {
-    arr.push(obj);
-  }
-  const objData = Object.fromEntries(arr);
-  console.log(objData);
-  putData(objData)
-    .then((msg) => {
-      console.log(msg);
+  dateOfBirth.value = payload.dateOfBirth;
+  btnBack.addEventListener("click", () => window.location.reload());
+  modalShow.show();
+
+  const editForm = document.getElementById("actionForm");
+  const editBtn = document.getElementById("editBtn");
+
+  const handleItemEdit = async (e) => {
+    e.preventDefault();
+    const formEdit = new FormData(editForm);
+    let arr = [];
+    for (const obj of formEdit) {
+      arr.push(obj);
+    }
+    const objData = Object.fromEntries(arr);
+    objData.nik = Number(id);
+    // console.log(objData);
+    try {
+      const updateData = await putData(objData);
+      // console.log(updateData);
       Toastify({
         text: "Success Post Data",
         duration: 2000,
@@ -42,8 +51,7 @@ editBtn.addEventListener("click", (e) => {
         },
       }).showToast();
       modalShow.hide();
-    })
-    .catch((err) => {
+    } catch (err) {
       console.log(err);
       Toastify({
         text: err.message,
@@ -54,5 +62,10 @@ editBtn.addEventListener("click", (e) => {
           background: "#B33030",
         },
       }).showToast();
-    });
-});
+    }
+  };
+
+  editBtn.addEventListener("click", handleItemEdit);
+};
+
+export default edit;
